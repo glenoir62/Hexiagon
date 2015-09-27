@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 6.2.0//EN" "http://www.liferay.com/dtd/liferay-display_6_2_0.dtd">
+
+<display>
+	<category name="category.hexiagon">
+		<portlet id="add-announcement-portlet" />
+		<portlet id="display-categories" />
+		<portlet id="annoucement-search" />
+		<portlet id="display-country-portlet" />
+		<portlet id="announcement-display-portlet" />
+		<portlet id="Hexiagon" />
+		<portlet id="favorite-announcement"></portlet>
+		<portlet id="categories-importer"></portlet>
+	</category>
+	<category name="category.hidden">
+		<portlet id="types-portlet"/>
+		<portlet id="announcements-portlet"/>
+		<portlet id="currencies-portlet"/>
+	</category>
+</display>

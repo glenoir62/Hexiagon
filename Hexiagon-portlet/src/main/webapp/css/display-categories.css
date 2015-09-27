@@ -1,0 +1,25 @@
+@import "compass";
+
+.display-categories-portlet-wrapper {
+	.accordion-group {
+		margin-bottom : 20px;
+		
+		.accordion-heading {
+			background: #50a2f5 !important;
+			.accordion-toggle {
+				color: white !important;
+			}
+		}
+	}
+	
+	.tree-node .tree-node-content {
+		.icon-tag,.icon-tags {
+			color: #006dcc;
+			font-size: 18px;
+		}
+		
+		.icon-plus-sign, .icon-minus-sign {
+			font-size: 16px;
+		}
+	}	
+}

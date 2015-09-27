@@ -1,0 +1,11 @@
+.display-country-portlet-wrapper {
+	.accordion-group {
+	
+		.accordion-heading {
+			background: #50a2f5 !important;
+			.accordion-toggle {
+				color: white !important;
+			}
+		}
+	}
+}

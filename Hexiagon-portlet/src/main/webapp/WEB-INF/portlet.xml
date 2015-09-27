@@ -1,0 +1,402 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
+	<portlet>
+		<portlet-name>Hexiagon</portlet-name>
+		<display-name>Hexiagon Portlet</display-name>
+		<portlet-class>
+			com.zenixia.plugins.hexiagon.portlet.hexiagon.web.HexiagonController
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/hexiagon/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Hexiagon Portlet</title>
+			<short-title>Hexiagon Portlet</short-title>
+			<keywords>Hexiagon</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>types-portlet</portlet-name>
+		<display-name>Types Portlet</display-name>
+		<portlet-class>
+			com.zenixia.plugins.hexiagon.portlet.types.web.TypesController
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/types/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Types Portlet</title>
+			<short-title>Types Portlet</short-title>
+			<keywords>Types</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>announcements-portlet</portlet-name>
+		<display-name>Announcements Portlet</display-name>
+		<portlet-class>
+			com.zenixia.plugins.hexiagon.portlet.announcements.web.AnnouncementsController
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/announcements/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Announcements Portlet</title>
+			<short-title>Announcements Portlet</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>currencies-portlet</portlet-name>
+		<display-name>Currencies Portlet</display-name>
+		<portlet-class>
+			com.zenixia.plugins.hexiagon.portlet.currencies.web.CurrenciesController
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/currencies/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Currencies Portlet</title>
+			<short-title>Currencies Portlet</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>add-announcement-portlet</portlet-name>
+		<display-name>Add Announcement Portlet</display-name>
+		<portlet-class>
+			com.zenixia.plugins.hexiagon.portlet.announcements.web.AddAnnouncementController
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/announcements/add/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Add Announcement Portlet</title>
+			<short-title>Add Announcement</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>display-categories</portlet-name>
+		<display-name>Display Categories</display-name>
+		<portlet-class>
+			com.zenixia.plugins.hexiagon.portlet.categories.web.DisplayCategoriesController
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/categories/display/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Display Categories</title>
+			<short-title>Display Categories</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+        <supported-public-render-parameter>categoryIds</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>annoucement-search</portlet-name>
+		<display-name>Annoucement Search</display-name>
+		<portlet-class>
+			com.zenixia.plugins.hexiagon.portlet.search.web.AnnoucementSearchController
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/announcements/search/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>edit-template</name>
+			<value>/jsp/announcements/search/edit/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+            <portlet-mode>edit</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Annoucement Search</title>
+			<short-title>Annoucement Search</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+        <supported-public-render-parameter>categoryIds</supported-public-render-parameter>
+        <supported-public-render-parameter>countryId</supported-public-render-parameter>
+        <supported-public-render-parameter>currencyId</supported-public-render-parameter>
+        <supported-public-render-parameter>filterId</supported-public-render-parameter>
+        <supported-public-render-parameter>regionId</supported-public-render-parameter>
+        <supported-public-render-parameter>typeId</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>display-country-portlet</portlet-name>
+		<display-name>Display Country Portlet</display-name>
+		<portlet-class>
+			com.zenixia.plugins.hexiagon.portlet.countries.web.DisplayCountryController
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/countries/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Display Country</title>
+			<short-title>Display Country</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+        <supported-public-render-parameter>regionId</supported-public-render-parameter>
+        <supported-public-render-parameter>countryId</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>announcement-display-portlet</portlet-name>
+		<display-name>Announcement Display Portlet</display-name>
+		<portlet-class>
+			com.zenixia.plugins.hexiagon.portlet.announcements.web.AnnouncementDisplayPortlet
+		</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/announcements/display/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Announcement Display</title>
+			<short-title>Announcement Display</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>favorite-announcement</portlet-name>
+		<display-name>Favorite Announcement</display-name>
+		<portlet-class>com.zenixia.plugins.hexiagon.portlet.announcements.web.FavoriteAnnouncementController</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/announcements/favorite/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Favorite Announcement</title>
+			<short-title>Favorite Announcement</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>categories-importer</portlet-name>
+		<display-name>Categories Importer</display-name>
+		<portlet-class>com.zenixia.plugins.hexiagon.portlet.categories.web.CategoriesImporterController</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/jsp/categories/importer/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Categories Importer</title>
+			<short-title>Categories Importer</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<public-render-parameter>
+		<identifier>categoryIds</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:categoryIds</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>typeId</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:typeId</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>currencyId</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:currencyId</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>filterId</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:filterId</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>regionId</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:regionId</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>countryId</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:countryId</qname>
+	</public-render-parameter>
+
+
+</portlet-app>
