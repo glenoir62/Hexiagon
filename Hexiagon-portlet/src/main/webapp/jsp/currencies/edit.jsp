@@ -1,6 +1,6 @@
-<%@page import="com.zenixia.plugins.hexiagon.model.Currency"%>
-<%@page import="com.zenixia.plugins.hexiagon.service.CurrencyLocalServiceUtil"%>
-<%@page import="com.zenixia.plugins.hexiagon.util.CurrencyUtil"%>
+<%@page import="com.gleo.plugins.hexiagon.model.Currency"%>
+<%@page import="com.gleo.plugins.hexiagon.service.CurrencyLocalServiceUtil"%>
+<%@page import="com.gleo.plugins.hexiagon.util.CurrencyUtil"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 
 <%@include file="/jsp/init.jsp" %>

@@ -1,7 +1,7 @@
-<%@page import="com.zenixia.plugins.hexiagon.model.Type"%>
+<%@page import="com.gleo.plugins.hexiagon.model.Type"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@page import="com.liferay.portal.security.permission.ActionKeys"%>
-<%@page import="com.zenixia.plugins.hexiagon.permission.TypePermission"%>
+<%@page import="com.gleo.plugins.hexiagon.permission.TypePermission"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.liferay.portal.kernel.util.WebKeys"%>
 <%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>

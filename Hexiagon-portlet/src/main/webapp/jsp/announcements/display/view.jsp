@@ -1,10 +1,10 @@
 
 <%@page import="javax.portlet.PortletMode"%>
-<%@page import="com.zenixia.plugins.hexiagon.constants.PortletKeys"%>
-<%@page import="com.zenixia.plugins.hexiagon.model.Announcement"%>
+<%@page import="com.gleo.plugins.hexiagon.constants.PortletKeys"%>
+<%@page import="com.gleo.plugins.hexiagon.model.Announcement"%>
 <%@page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
 <%@page import="com.liferay.portal.security.auth.PrincipalException"%>
-<%@page import="com.zenixia.plugins.hexiagon.NoSuchAnnouncementException"%>
+<%@page import="com.gleo.plugins.hexiagon.NoSuchAnnouncementException"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@page import="javax.portlet.WindowState"%>

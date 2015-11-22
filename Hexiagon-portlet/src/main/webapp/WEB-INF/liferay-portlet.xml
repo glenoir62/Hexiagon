@@ -27,11 +27,11 @@
 	<portlet>
 		<portlet-name>announcements-portlet</portlet-name>
 		<icon>/icon.png</icon>
-		<indexer-class>com.zenixia.plugins.hexiagon.portlet.announcements.indexer.AnnouncementIndexer</indexer-class>
+		<indexer-class>com.gleo.plugins.hexiagon.portlet.announcements.indexer.AnnouncementIndexer</indexer-class>
 		<control-panel-entry-category>site_administration.content</control-panel-entry-category>
 		<control-panel-entry-weight>1.6</control-panel-entry-weight>
-		<asset-renderer-factory>com.zenixia.plugins.hexiagon.portlet.announcements.asset.AnnouncementAssetRendererFactory</asset-renderer-factory>
-		<workflow-handler>com.zenixia.plugins.hexiagon.portlet.announcements.workflow.AnnouncementWorkflowHandler</workflow-handler>
+		<asset-renderer-factory>com.gleo.plugins.hexiagon.portlet.announcements.asset.AnnouncementAssetRendererFactory</asset-renderer-factory>
+		<workflow-handler>com.gleo.plugins.hexiagon.portlet.announcements.workflow.AnnouncementWorkflowHandler</workflow-handler>
 		<action-url-redirect>true</action-url-redirect>
 		<ajaxable>true</ajaxable>
 		<header-portlet-css>/css/main.css</header-portlet-css>

@@ -1,5 +1,5 @@
-<%@page import="com.zenixia.plugins.hexiagon.service.TypeLocalServiceUtil"%>
-<%@page import="com.zenixia.plugins.hexiagon.model.Type"%>
+<%@page import="com.gleo.plugins.hexiagon.service.TypeLocalServiceUtil"%>
+<%@page import="com.gleo.plugins.hexiagon.model.Type"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@include file="/jsp/init.jsp" %>
 

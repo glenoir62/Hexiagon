@@ -1,12 +1,12 @@
-<%@page import="com.zenixia.plugins.hexiagon.model.Announcement"%>
+<%@page import="com.gleo.plugins.hexiagon.model.Announcement"%>
 <%@page import="javax.portlet.PortletMode"%>
 <%@page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
 <%@page import="javax.portlet.PortletRequest"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@page import="com.liferay.portlet.PortletURLFactoryUtil"%>
 <%@page import="javax.portlet.PortletURL"%>
-<%@page import="com.zenixia.plugins.hexiagon.constants.PortletKeys"%>
-<%@page import="com.zenixia.plugins.hexiagon.constants.AnnouncementConstants"%>
+<%@page import="com.gleo.plugins.hexiagon.constants.PortletKeys"%>
+<%@page import="com.gleo.plugins.hexiagon.constants.AnnouncementConstants"%>
 <%@page import="com.liferay.portal.model.User"%>
 <%@include file="/jsp/init.jsp" %>
 

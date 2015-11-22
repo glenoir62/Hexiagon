@@ -1,5 +1,5 @@
 
-<%@page import="com.zenixia.plugins.hexiagon.model.Announcement"%>
+<%@page import="com.gleo.plugins.hexiagon.model.Announcement"%>
 <%@page import="javax.portlet.WindowState"%>
 <%@include file="/jsp/init.jsp"%>
 

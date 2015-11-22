@@ -87,7 +87,7 @@
 	</portlet-resource>
 	
 	<model-resource>
-		<model-name>com.zenixia.plugins.hexiagon.model</model-name>
+		<model-name>com.gleo.plugins.hexiagon.model</model-name>
 		<portlet-ref>
 			<portlet-name>Hexiagon</portlet-name>
 		</portlet-ref>
@@ -112,7 +112,7 @@
 	</model-resource>
 	
 	<model-resource>
-		<model-name>com.zenixia.plugins.hexiagon.model.Announcement</model-name>
+		<model-name>com.gleo.plugins.hexiagon.model.Announcement</model-name>
 		<portlet-ref>
 			<portlet-name>announcements-portlet</portlet-name>
 		</portlet-ref>
@@ -144,7 +144,7 @@
 	</model-resource>
 	
 	<model-resource>
-		<model-name>com.zenixia.plugins.hexiagon.model.Currency</model-name>
+		<model-name>com.gleo.plugins.hexiagon.model.Currency</model-name>
 		<portlet-ref>
 			<portlet-name>currencies-portlet</portlet-name>
 		</portlet-ref>
@@ -169,7 +169,7 @@
 		</permissions>
 	</model-resource>
 	<model-resource>
-		<model-name>com.zenixia.plugins.hexiagon.model.Type</model-name>
+		<model-name>com.gleo.plugins.hexiagon.model.Type</model-name>
 		<portlet-ref>
 			<portlet-name>types-portlet</portlet-name>
 		</portlet-ref>

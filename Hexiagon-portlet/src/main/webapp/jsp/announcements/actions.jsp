@@ -2,9 +2,9 @@
 <%@page import="com.liferay.portlet.asset.model.AssetRenderer"%>
 <%@page import="com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil"%>
 <%@page import="com.liferay.portlet.asset.model.AssetRendererFactory"%>
-<%@page import="com.zenixia.plugins.hexiagon.constants.PortletKeys"%>
-<%@page import="com.zenixia.plugins.hexiagon.model.Announcement"%>
-<%@page import="com.zenixia.plugins.hexiagon.permission.AnnouncementPermission"%>
+<%@page import="com.gleo.plugins.hexiagon.constants.PortletKeys"%>
+<%@page import="com.gleo.plugins.hexiagon.model.Announcement"%>
+<%@page import="com.gleo.plugins.hexiagon.permission.AnnouncementPermission"%>
 <%@page import="javax.portlet.PortletMode"%>
 <%@page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>

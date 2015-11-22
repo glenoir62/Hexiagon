@@ -1,5 +1,5 @@
-<%@page import="com.zenixia.plugins.hexiagon.constants.PortletKeys"%>
-<%@page import="com.zenixia.plugins.hexiagon.permission.HexiagonPermission"%>
+<%@page import="com.gleo.plugins.hexiagon.constants.PortletKeys"%>
+<%@page import="com.gleo.plugins.hexiagon.permission.HexiagonPermission"%>
 <%@include file="/jsp/init.jsp" %>
 <%@page import="javax.portlet.PortletMode"%>
 <%@page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
@@ -18,7 +18,7 @@
 	/>
 
 	<liferay-ui:search-container-row
-		className="com.zenixia.plugins.hexiagon.model.Announcement"
+		className="com.gleo.plugins.hexiagon.model.Announcement"
 		keyProperty="announcementId"
 		modelVar="announcement" escapedModel="true" 
 	>

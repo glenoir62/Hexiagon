@@ -5,7 +5,7 @@
 		<portlet-name>Hexiagon</portlet-name>
 		<display-name>Hexiagon Portlet</display-name>
 		<portlet-class>
-			com.zenixia.plugins.hexiagon.portlet.hexiagon.web.HexiagonController
+			com.gleo.plugins.hexiagon.portlet.hexiagon.web.HexiagonController
 		</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -37,7 +37,7 @@
 		<portlet-name>types-portlet</portlet-name>
 		<display-name>Types Portlet</display-name>
 		<portlet-class>
-			com.zenixia.plugins.hexiagon.portlet.types.web.TypesController
+			com.gleo.plugins.hexiagon.portlet.types.web.TypesController
 		</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -70,7 +70,7 @@
 		<portlet-name>announcements-portlet</portlet-name>
 		<display-name>Announcements Portlet</display-name>
 		<portlet-class>
-			com.zenixia.plugins.hexiagon.portlet.announcements.web.AnnouncementsController
+			com.gleo.plugins.hexiagon.portlet.announcements.web.AnnouncementsController
 		</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -103,7 +103,7 @@
 		<portlet-name>currencies-portlet</portlet-name>
 		<display-name>Currencies Portlet</display-name>
 		<portlet-class>
-			com.zenixia.plugins.hexiagon.portlet.currencies.web.CurrenciesController
+			com.gleo.plugins.hexiagon.portlet.currencies.web.CurrenciesController
 		</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -136,7 +136,7 @@
 		<portlet-name>add-announcement-portlet</portlet-name>
 		<display-name>Add Announcement Portlet</display-name>
 		<portlet-class>
-			com.zenixia.plugins.hexiagon.portlet.announcements.web.AddAnnouncementController
+			com.gleo.plugins.hexiagon.portlet.announcements.web.AddAnnouncementController
 		</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -169,7 +169,7 @@
 		<portlet-name>display-categories</portlet-name>
 		<display-name>Display Categories</display-name>
 		<portlet-class>
-			com.zenixia.plugins.hexiagon.portlet.categories.web.DisplayCategoriesController
+			com.gleo.plugins.hexiagon.portlet.categories.web.DisplayCategoriesController
 		</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -203,7 +203,7 @@
 		<portlet-name>annoucement-search</portlet-name>
 		<display-name>Annoucement Search</display-name>
 		<portlet-class>
-			com.zenixia.plugins.hexiagon.portlet.search.web.AnnoucementSearchController
+			com.gleo.plugins.hexiagon.portlet.search.web.AnnoucementSearchController
 		</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -247,7 +247,7 @@
 		<portlet-name>display-country-portlet</portlet-name>
 		<display-name>Display Country Portlet</display-name>
 		<portlet-class>
-			com.zenixia.plugins.hexiagon.portlet.countries.web.DisplayCountryController
+			com.gleo.plugins.hexiagon.portlet.countries.web.DisplayCountryController
 		</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -282,7 +282,7 @@
 		<portlet-name>announcement-display-portlet</portlet-name>
 		<display-name>Announcement Display Portlet</display-name>
 		<portlet-class>
-			com.zenixia.plugins.hexiagon.portlet.announcements.web.AnnouncementDisplayPortlet
+			com.gleo.plugins.hexiagon.portlet.announcements.web.AnnouncementDisplayPortlet
 		</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -314,7 +314,7 @@
 	<portlet>
 		<portlet-name>favorite-announcement</portlet-name>
 		<display-name>Favorite Announcement</display-name>
-		<portlet-class>com.zenixia.plugins.hexiagon.portlet.announcements.web.FavoriteAnnouncementController</portlet-class>
+		<portlet-class>com.gleo.plugins.hexiagon.portlet.announcements.web.FavoriteAnnouncementController</portlet-class>
 		<init-param>
 			<name>view-template</name>
 			<value>/jsp/announcements/favorite/view.jsp</value>
@@ -345,7 +345,7 @@
 	<portlet>
 		<portlet-name>categories-importer</portlet-name>
 		<display-name>Categories Importer</display-name>
-		<portlet-class>com.zenixia.plugins.hexiagon.portlet.categories.web.CategoriesImporterController</portlet-class>
+		<portlet-class>com.gleo.plugins.hexiagon.portlet.categories.web.CategoriesImporterController</portlet-class>
 		<init-param>
 			<name>view-template</name>
 			<value>/jsp/categories/importer/view.jsp</value>

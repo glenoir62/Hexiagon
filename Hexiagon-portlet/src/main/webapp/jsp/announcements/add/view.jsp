@@ -1,4 +1,4 @@
-<%@page import="com.zenixia.plugins.hexiagon.model.Announcement"%>
+<%@page import="com.gleo.plugins.hexiagon.model.Announcement"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@include file="/jsp/init.jsp" %>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>

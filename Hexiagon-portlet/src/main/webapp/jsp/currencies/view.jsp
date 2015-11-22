@@ -1,4 +1,4 @@
-<%@page import="com.zenixia.plugins.hexiagon.permission.HexiagonPermission"%>
+<%@page import="com.gleo.plugins.hexiagon.permission.HexiagonPermission"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@include file="/jsp/init.jsp" %>
 
@@ -32,7 +32,7 @@
 	<aui:input name="tabs1" type="hidden" value="currencies" />
 	
 	<liferay-ui:search-container-row 
-		className="com.zenixia.plugins.hexiagon.model.Currency"
+		className="com.gleo.plugins.hexiagon.model.Currency"
 		keyProperty="currencyId"
 		modelVar="currency" escapedModel="true"
 	>

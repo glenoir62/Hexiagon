@@ -1,5 +1,5 @@
 <%@page import="javax.portlet.PortletMode"%>
-<%@page import="com.zenixia.plugins.hexiagon.constants.PortletKeys"%>
+<%@page import="com.gleo.plugins.hexiagon.constants.PortletKeys"%>
 <%@page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@include file="/jsp/init.jsp" %>

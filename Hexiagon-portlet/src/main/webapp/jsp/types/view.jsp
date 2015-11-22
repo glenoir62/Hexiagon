@@ -1,4 +1,4 @@
-<%@page import="com.zenixia.plugins.hexiagon.permission.HexiagonPermission"%>
+<%@page import="com.gleo.plugins.hexiagon.permission.HexiagonPermission"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@include file="/jsp/init.jsp" %>
 
@@ -29,7 +29,7 @@
 	/>
 	
 	<liferay-ui:search-container-row 
-		className="com.zenixia.plugins.hexiagon.model.Type"
+		className="com.gleo.plugins.hexiagon.model.Type"
 		keyProperty="typeId"
 		modelVar="type" escapedModel="true"
 	>	
