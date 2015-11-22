@@ -1,5 +1,18 @@
 package com.gleo.plugins.hexiagon.portlet.announcements.web;
 
+import com.gleo.plugins.hexiagon.constants.AnnouncementConstants;
+import com.gleo.plugins.hexiagon.constants.PortletKeys;
+import com.gleo.plugins.hexiagon.model.Announcement;
+import com.gleo.plugins.hexiagon.model.AnnouncementImage;
+import com.gleo.plugins.hexiagon.model.Currency;
+import com.gleo.plugins.hexiagon.model.Type;
+import com.gleo.plugins.hexiagon.service.AnnouncementImageLocalServiceUtil;
+import com.gleo.plugins.hexiagon.service.AnnouncementLocalServiceUtil;
+import com.gleo.plugins.hexiagon.service.AnnouncementServiceUtil;
+import com.gleo.plugins.hexiagon.service.CurrencyLocalServiceUtil;
+import com.gleo.plugins.hexiagon.service.TypeServiceUtil;
+import com.gleo.plugins.hexiagon.util.AnnouncementImageUtil;
+import com.gleo.plugins.hexiagon.validator.AnnouncementValidator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -28,6 +41,7 @@ import com.liferay.portal.service.CountryServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.service.persistence.ImageUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.AssetCategoryException;
@@ -35,24 +49,13 @@ import com.liferay.portlet.asset.model.AssetCategoryConstants;
 import com.liferay.portlet.asset.model.AssetVocabulary;
 import com.liferay.portlet.asset.service.AssetCategoryServiceUtil;
 import com.liferay.portlet.asset.service.AssetVocabularyServiceUtil;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.documentlibrary.util.ImageProcessorUtil;
 import com.liferay.portlet.documentlibrary.util.PDFProcessorUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
-import com.gleo.plugins.hexiagon.constants.AnnouncementConstants;
-import com.gleo.plugins.hexiagon.constants.PortletKeys;
-import com.gleo.plugins.hexiagon.model.Announcement;
-import com.gleo.plugins.hexiagon.model.AnnouncementImage;
-import com.gleo.plugins.hexiagon.model.Currency;
-import com.gleo.plugins.hexiagon.model.Type;
-import com.gleo.plugins.hexiagon.service.AnnouncementImageLocalServiceUtil;
-import com.gleo.plugins.hexiagon.service.AnnouncementLocalServiceUtil;
-import com.gleo.plugins.hexiagon.service.AnnouncementServiceUtil;
-import com.gleo.plugins.hexiagon.service.CurrencyLocalServiceUtil;
-import com.gleo.plugins.hexiagon.service.TypeServiceUtil;
-import com.gleo.plugins.hexiagon.util.AnnouncementImageUtil;
-import com.gleo.plugins.hexiagon.validator.AnnouncementValidator;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,6 +79,8 @@ public class AddAnnouncementController extends MVCPortlet {
 
 	protected static Log LOGGER = LogFactoryUtil.getLog(AddAnnouncementController.class);
 	
+	private static final String AGREEMENT_FILE_ENTRYID = "agreementFileEntryId";
+	
 	@Override
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -97,11 +102,12 @@ public class AddAnnouncementController extends MVCPortlet {
 		String content = StringPool.BLANK;
 		
 		PortletPreferences preferences;
-		long entryId = 0;
+		long agreementFileEntryId = 0;
 		
 		try {
-			preferences = PortletPreferencesLocalServiceUtil.getPreferences(themeDisplay.getCompanyId(), PortletKeys.PREFS_OWNER_ID_DEFAULT, PortletKeys.PREFS_OWNER_TYPE_LAYOUT, PortalUtil.getControlPanelPlid(themeDisplay.getCompanyId()), com.gleo.plugins.hexiagon.constants.PortletKeys.HEXAGON_PORTLETID);
-			entryId = GetterUtil.getLong(preferences.getValue("entryId", StringPool.BLANK));
+			// preferences = PortletPreferencesLocalServiceUtil.getPreferences(themeDisplay.getCompanyId(), PortletKeys.PREFS_OWNER_ID_DEFAULT, PortletKeys.PREFS_OWNER_TYPE_LAYOUT, PortalUtil.getControlPanelPlid(themeDisplay.getCompanyId()), com.gleo.plugins.hexiagon.constants.PortletKeys.HEXAGON_PORTLETID);
+			preferences = renderRequest.getPreferences();
+			agreementFileEntryId = GetterUtil.getLong(preferences.getValue(AGREEMENT_FILE_ENTRYID, StringPool.BLANK));
 			
 			Country country = CountryServiceUtil.getCountryByA3(themeDisplay.getLocale().getISO3Country());
 			
@@ -120,55 +126,6 @@ public class AddAnnouncementController extends MVCPortlet {
 				LOGGER.debug(pe);
 			}
 			LOGGER.error("PortalException: unable to get preferences " + pe.getMessage());
-		}
-		
-		
-		String previewFileURL = null;
-		String[] previewFileURLs = null;
-
-		String previewQueryString = null;
-		
-		if (Validator.isNotNull(entryId)) {
-			FileEntry fileEntry;
-			FileVersion fileVersion;
-			try {
-				fileEntry = DLAppLocalServiceUtil.getFileEntry(entryId);
-				fileVersion = fileEntry.getFileVersion();
-				
-				boolean hasImages = ImageProcessorUtil.hasImages(fileVersion);
-				boolean hasPDFImages = PDFProcessorUtil.hasImages(fileVersion);
-				
-				if (hasImages) {
-					previewQueryString = "&imagePreview=1";
-				}
-				else if (hasPDFImages) {
-		
-					previewQueryString = "&previewFileIndex=";
-		
-					previewFileURL = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, previewQueryString);
-				}
-		
-				if (Validator.isNotNull(previewQueryString)) {
-		
-					previewFileURLs = new String[1];
-		
-					previewFileURLs[0] = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, previewQueryString);
-		
-					previewFileURL = previewFileURLs[0];
-				}
-			}
-			catch (PortalException pe) {
-				if (LOGGER.isDebugEnabled()) {
-					LOGGER.debug(pe);
-				}
-				LOGGER.error("PortalException: unable to get preferences " + pe.getMessage());
-			}
-			catch (SystemException se) {
-				if (LOGGER.isDebugEnabled()) {
-					LOGGER.debug(se);
-				}
-				LOGGER.error("PortalException: unable to get preferences " + se.getMessage());
-			}
 		}
 
 		// add case
@@ -268,7 +225,7 @@ public class AddAnnouncementController extends MVCPortlet {
 		}
 
 		//preview
-		renderRequest.setAttribute("previewFileURL", previewFileURL);
+		renderRequest.setAttribute("previewFileURL", AnnouncementImageUtil.getImageURL(themeDisplay, agreementFileEntryId));
 
 		renderRequest.setAttribute("redirect", redirect);
 		renderRequest.setAttribute("title", title);
@@ -518,4 +475,55 @@ public class AddAnnouncementController extends MVCPortlet {
 		}
 	}
 
+
+	/**
+	 * Save Agreement
+	 * 
+	 * @param actionRequest
+	 * @param actionResponse
+	 * @throws IOException
+	 * @throws PortletException
+	 */
+	public void saveAgreement(ActionRequest actionRequest, ActionResponse actionResponse)
+		throws IOException, PortletException {
+
+		long fileEntryId = ParamUtil.getLong(actionRequest,"fileEntryId");
+		
+		PortletPreferences portletPreferences = actionRequest.getPreferences();
+		
+		portletPreferences.setValue(AGREEMENT_FILE_ENTRYID, String.valueOf(fileEntryId));
+		portletPreferences.store();
+	}
+
+	@Override
+	public void doEdit(RenderRequest renderRequest, RenderResponse renderResponse)
+		throws IOException, PortletException {
+
+		PortletPreferences portletPreferences = renderRequest.getPreferences();
+		long agreementFileEntryId = GetterUtil.getLong(portletPreferences.getValue(AGREEMENT_FILE_ENTRYID, StringPool.BLANK));
+		String title = StringPool.BLANK;
+		
+		// Get agreement title	
+		try {
+			if(agreementFileEntryId > 0) {
+				DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.getDLFileEntry(agreementFileEntryId);
+				
+				if (dlFileEntry != null) {
+					title = dlFileEntry.getTitle();
+				}
+			}
+		}
+		catch (PortalException pe) {
+			LOGGER.error(pe);
+		}
+		catch (SystemException se) {
+			LOGGER.error(se);
+		}
+		
+		renderRequest.setAttribute("fileEntryId", agreementFileEntryId);
+		renderRequest.setAttribute("title", title);
+		
+		super.doEdit(renderRequest, renderResponse);
+	}
+	
 }

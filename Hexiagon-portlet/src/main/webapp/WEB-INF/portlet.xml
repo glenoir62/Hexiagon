@@ -142,10 +142,15 @@
 			<name>view-template</name>
 			<value>/jsp/announcements/add/view.jsp</value>
 		</init-param>
+		<init-param>
+			<name>edit-template</name>
+			<value>/jsp/announcements/add/edit.jsp</value>
+		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
 			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
 		</supports>
 		<portlet-info>
 			<title>Add Announcement Portlet</title>

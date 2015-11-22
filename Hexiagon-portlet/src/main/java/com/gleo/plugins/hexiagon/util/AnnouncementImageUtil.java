@@ -1,12 +1,20 @@
 
 package com.gleo.plugins.hexiagon.util;
 
+import com.gleo.plugins.hexiagon.constants.AnnouncementConstants;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.image.ImageBag;
 import com.liferay.portal.kernel.image.ImageToolUtil;
 import com.liferay.portal.kernel.io.ByteArrayFileInputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.gleo.plugins.hexiagon.constants.AnnouncementConstants;
+import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
+import com.liferay.portlet.documentlibrary.util.DLUtil;
 
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -107,4 +115,41 @@ public class AnnouncementImageUtil {
 		return ext;
 	}
 
+	
+	/**
+	 * Get image url
+	 * 
+	 * @param themeDisplay
+	 * @return
+	 * @throws PortalException
+	 */
+	public static String getImageURL(ThemeDisplay themeDisplay, long fileEntryId) {
+
+		String imageUrl = StringPool.BLANK;
+
+		if (Validator.isNotNull(fileEntryId)) {
+			FileEntry dlFileEntry = null;
+			try {
+				dlFileEntry = DLAppServiceUtil.getFileEntry(fileEntryId);
+
+				if (dlFileEntry != null) {
+					return DLUtil.getPreviewURL(dlFileEntry, dlFileEntry.getLatestFileVersion(), themeDisplay, StringPool.BLANK);
+				}
+			}
+			catch (SystemException e) {
+				if (LOGGER.isDebugEnabled()) {
+					LOGGER.debug(e);
+				}
+				LOGGER.error("SystemException: impossible to get url file entry name for " + fileEntryId);
+			}
+			catch (PortalException e) {
+				if (LOGGER.isDebugEnabled()) {
+					LOGGER.debug(e);
+				}
+				LOGGER.error("PortalException: impossible to get url file entry name for " + fileEntryId);
+			}
+		}
+
+		return imageUrl;
+	}
 }
