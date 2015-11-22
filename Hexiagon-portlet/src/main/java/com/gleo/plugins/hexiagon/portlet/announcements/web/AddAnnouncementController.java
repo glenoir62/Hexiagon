@@ -9,7 +9,7 @@ import com.gleo.plugins.hexiagon.service.AnnouncementImageLocalServiceUtil;
 import com.gleo.plugins.hexiagon.service.AnnouncementLocalServiceUtil;
 import com.gleo.plugins.hexiagon.service.AnnouncementServiceUtil;
 import com.gleo.plugins.hexiagon.service.CurrencyLocalServiceUtil;
-import com.gleo.plugins.hexiagon.service.TypeServiceUtil;
+import com.gleo.plugins.hexiagon.service.TypeLocalServiceUtil;
 import com.gleo.plugins.hexiagon.util.AnnouncementImageUtil;
 import com.gleo.plugins.hexiagon.validator.AnnouncementValidator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -156,8 +156,9 @@ public class AddAnnouncementController extends MVCPortlet {
 
 		// get types and currencies
 		try {
-			types = TypeServiceUtil.getTypesByGroupId(themeDisplay.getScopeGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
+			// types = TypeServiceUtil.getTypesByGroupId(themeDisplay.getScopeGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			types = TypeLocalServiceUtil.getTypes(themeDisplay.getScopeGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			
 			for (Type type : types) {
 				String name = type.getName(locale);
 				type.setName(HtmlUtil.escape(name), locale);
