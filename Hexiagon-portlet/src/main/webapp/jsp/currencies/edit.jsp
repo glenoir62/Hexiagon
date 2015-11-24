@@ -1,6 +1,9 @@
+<%@page import="com.liferay.portal.kernel.util.PortalClassInvoker"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.liferay.portal.kernel.util.ClassResolverUtil"%>
+<%@page import="com.liferay.portal.kernel.util.MethodKey"%>
 <%@page import="com.gleo.plugins.hexiagon.model.Currency"%>
 <%@page import="com.gleo.plugins.hexiagon.service.CurrencyLocalServiceUtil"%>
-<%@page import="com.gleo.plugins.hexiagon.util.CurrencyUtil"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 
 <%@include file="/jsp/init.jsp" %>
@@ -16,8 +19,19 @@
 	if (currencyId > 0) {
 		currency = CurrencyLocalServiceUtil.getCurrency(currencyId);
 	}
+	
+	// Well well well ...
+	MethodKey methodKey = new MethodKey(
+	ClassResolverUtil.resolveByPortalClassLoader("com.liferay.portlet.currencyconverter.util.CurrencyUtil"),
+		"getAllSymbols",
+		new Class<?>[] {
+			PageContext.class
+		});
+	
+	Map<String, String> currenciesMap = (Map<String, String>) PortalClassInvoker.invoke(true, methodKey, pageContext);
+
 %>
-<c:set  var="currencyEntrySet" value="<%= CurrencyUtil.getAllSymbols(themeDisplay.getLocale()).entrySet() %>"/>
+<c:set  var="currencyEntrySet" value="<%= currenciesMap.entrySet() %>"/>
 
 <liferay-ui:header
 	backURL='<%= redirect %>'
@@ -39,7 +53,7 @@
 		<liferay-ui:error key="label-required" message="label-required" />
 		<aui:select name="label" label="Label" showEmptyOption="true" >
 			<c:forEach var="currencyEntry" items="${currencyEntrySet}">
-				<aui:option label="${currencyEntry.key}" value="${currencyEntry.value}"></aui:option>
+				<aui:option label="currency.${currencyEntry.key}" value="${currencyEntry.value}"></aui:option>
 			</c:forEach>
 		</aui:select>
 		
