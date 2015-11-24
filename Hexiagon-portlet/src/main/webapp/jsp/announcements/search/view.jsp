@@ -4,7 +4,9 @@
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@include file="/jsp/init.jsp" %>
 
-<liferay-ui:success key="announcement-deleted" message="announcement-deleted-successfully" />
+<liferay-ui:success key="announcement-added" message="announcement-added"/>
+<liferay-ui:success key="announcement-updated" message="announcement-updated"/>
+<liferay-ui:success key="announcement-deleted" message="announcement-deleted"/>
 
 <liferay-ui:error key="announcement-errors" message="announcement-errors" />
 

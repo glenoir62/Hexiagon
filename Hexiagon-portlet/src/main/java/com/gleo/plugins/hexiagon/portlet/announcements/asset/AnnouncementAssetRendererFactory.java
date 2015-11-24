@@ -39,6 +39,15 @@ public class AnnouncementAssetRendererFactory extends BaseAssetRendererFactory {
 	}
 	
 	@Override
+	public AssetRenderer getAssetRenderer(long classPK)
+		throws PortalException, SystemException {
+
+		Announcement announcement = AnnouncementLocalServiceUtil.getAnnouncement(classPK);
+
+		return new AnnouncementAssetRenderer(announcement);
+	}
+	
+	@Override
 	public String getClassName() {
 		return CLASS_NAME;
 	}

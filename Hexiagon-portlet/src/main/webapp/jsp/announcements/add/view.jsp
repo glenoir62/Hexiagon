@@ -14,6 +14,10 @@
 	<portlet:param name="redirect" value="${redirect}"/>
 </portlet:actionURL>
 
+<liferay-ui:success key="announcement-added" message="announcement-added"/>
+<liferay-ui:success key="announcement-updated" message="announcement-updated"/>
+<liferay-ui:success key="announcement-deleted" message="announcement-deleted"/>
+
 <liferay-ui:error key="announcement-errors" message="announcement-errors" />
 
 <aui:form action="${editAnnouncementURL}" enctype="multipart/form-data" method="POST" name="fm">

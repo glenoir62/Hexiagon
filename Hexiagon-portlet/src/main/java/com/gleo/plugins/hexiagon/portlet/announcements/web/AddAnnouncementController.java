@@ -5,6 +5,7 @@ import com.gleo.plugins.hexiagon.model.Announcement;
 import com.gleo.plugins.hexiagon.model.AnnouncementImage;
 import com.gleo.plugins.hexiagon.model.Currency;
 import com.gleo.plugins.hexiagon.model.Type;
+import com.gleo.plugins.hexiagon.portlet.announcements.asset.AnnouncementAssetRendererFactory;
 import com.gleo.plugins.hexiagon.service.AnnouncementImageLocalServiceUtil;
 import com.gleo.plugins.hexiagon.service.AnnouncementLocalServiceUtil;
 import com.gleo.plugins.hexiagon.service.AnnouncementServiceUtil;
@@ -40,7 +41,10 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.AssetCategoryException;
+import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetCategoryConstants;
+import com.liferay.portlet.asset.model.AssetRenderer;
+import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.asset.model.AssetVocabulary;
 import com.liferay.portlet.asset.service.AssetCategoryServiceUtil;
 import com.liferay.portlet.asset.service.AssetVocabularyServiceUtil;
@@ -263,11 +267,15 @@ public class AddAnnouncementController extends MVCPortlet {
 
 			if (AnnouncementValidator.validateAnnouncement(announcement, errors, themeDisplay.getLocale())) {
 				announcement = AnnouncementServiceUtil.addAnnouncement(announcement, serviceContext);
-				SessionMessages.add(actionRequest, "announcement-added");
+			
+				// Redirect	
+				AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(AnnouncementAssetRendererFactory.CLASS_NAME);
+				AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(announcement.getAnnouncementId());
 				
-				String redirect = ParamUtil.getString(uploadPortletRequest, "redirect");
-
-				actionResponse.sendRedirect(redirect);
+				String redirect = assetRenderer.getURLViewInContext(PortalUtil.getLiferayPortletRequest(actionRequest),PortalUtil.getLiferayPortletResponse(actionResponse), StringPool.BLANK);
+				
+				if(!Validator.isBlank(redirect))
+					actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 			}
 			else {
 				for (String error : errors) {
@@ -325,10 +333,15 @@ public class AddAnnouncementController extends MVCPortlet {
 
 		if (AnnouncementValidator.validateAnnouncement(announcement, errors, themeDisplay.getLocale())) {
 			AnnouncementServiceUtil.updateAnnouncement(announcement, serviceContext);
-			SessionMessages.add(actionRequest, "announcement-updated");
-			String redirect = ParamUtil.getString(uploadPortletRequest, "redirect");
-
-			actionResponse.sendRedirect(redirect);
+			
+			// Redirect	
+			AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(AnnouncementAssetRendererFactory.CLASS_NAME);
+			AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(announcement.getAnnouncementId());
+			
+			String redirect = assetRenderer.getURLViewInContext(PortalUtil.getLiferayPortletRequest(actionRequest),PortalUtil.getLiferayPortletResponse(actionResponse), StringPool.BLANK);
+			
+			if(!Validator.isBlank(redirect))
+				actionResponse.sendRedirect(redirect);
 		}
 		else {
 			for (String error : errors) {
@@ -444,8 +457,10 @@ public class AddAnnouncementController extends MVCPortlet {
 				AnnouncementServiceUtil.deleteAnnouncement(announcementId);
 				SessionMessages.add(request, "announcement-deleted");
 				String redirect = ParamUtil.getString(request, "redirect");
-				response.sendRedirect(redirect);
-
+				
+				if(!Validator.isBlank(redirect)) {
+					response.sendRedirect(redirect);
+				} 
 			}
 			else {
 				SessionErrors.add(request, "announcement-errors");
