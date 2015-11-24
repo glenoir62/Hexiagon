@@ -18,6 +18,10 @@ import com.gleo.plugins.hexiagon.service.AnnouncementLocalServiceUtil;
 import javax.portlet.PortletURL;
 
 
+/**
+ * @author guillaumelenoir
+ * Announcement Asset Renderer Factory
+ */
 public class AnnouncementAssetRendererFactory extends BaseAssetRendererFactory {
 
 	public static final String CLASS_NAME = Announcement.class.getName();

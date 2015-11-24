@@ -252,6 +252,11 @@ public class AnnouncementIndexer extends BaseIndexer {
 		return PORTLET_ID;
 	}
 
+	/**
+	 * @param contextQuery
+	 * @param searchContext
+	 * @throws Exception
+	 */
 	protected void addSearchAnyCategories(BooleanQuery contextQuery, SearchContext searchContext)
 		throws Exception {
 

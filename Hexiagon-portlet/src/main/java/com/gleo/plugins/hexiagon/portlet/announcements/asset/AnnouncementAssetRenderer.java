@@ -36,6 +36,10 @@ import javax.portlet.WindowStateException;
 
 
 
+/**
+ * @author guillaumelenoir
+ * Announcement Asset Renderer
+ */
 public class AnnouncementAssetRenderer extends BaseAssetRenderer implements TrashRenderer {
 
 	protected static Log LOGGER = LogFactoryUtil.getLog(AnnouncementAssetRenderer.class);
@@ -44,10 +48,16 @@ public class AnnouncementAssetRenderer extends BaseAssetRenderer implements Tras
 		_announcement = announcement;
 	}
 	
+	/**
+	 * @param permissionChecker
+	 * @return
+	 * @throws PortalException
+	 * @throws SystemException
+	 */
 	public boolean hasDeletePermission(PermissionChecker permissionChecker)
 	throws PortalException, SystemException {
 
-	return AnnouncementPermission.contains(permissionChecker, _announcement.getAnnouncementId(), ActionKeys.DELETE);
+		return AnnouncementPermission.contains(permissionChecker, _announcement.getAnnouncementId(), ActionKeys.DELETE);
 	}
 
 	@Override
