@@ -1,6 +1,7 @@
 package com.gleo.plugins.hexiagon.portlet.announcements.web;
 
 import com.gleo.plugins.hexiagon.constants.AnnouncementConstants;
+import com.gleo.plugins.hexiagon.constants.PortletKeys;
 import com.gleo.plugins.hexiagon.model.Announcement;
 import com.gleo.plugins.hexiagon.model.AnnouncementImage;
 import com.gleo.plugins.hexiagon.model.Currency;
@@ -35,7 +36,9 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Country;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.service.CountryServiceUtil;
+import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -100,8 +103,28 @@ public class AddAnnouncementController extends MVCPortlet {
 		long agreementFileEntryId = 0;
 		
 		try {
-			// preferences = PortletPreferencesLocalServiceUtil.getPreferences(themeDisplay.getCompanyId(), PortletKeys.PREFS_OWNER_ID_DEFAULT, PortletKeys.PREFS_OWNER_TYPE_LAYOUT, PortalUtil.getControlPanelPlid(themeDisplay.getCompanyId()), com.gleo.plugins.hexiagon.constants.PortletKeys.HEXAGON_PORTLETID);
-			preferences = renderRequest.getPreferences();
+			long plid = LayoutConstants.DEFAULT_PLID;
+			
+			try {
+				 plid = PortalUtil.getPlidFromPortletId(
+					themeDisplay.getScopeGroupId(), PortletKeys.ADD_ANNOUNCEMENT_PORTLETID);
+			}
+			catch (PortalException e) {
+				if (LOGGER.isDebugEnabled()){
+					LOGGER.debug(e);
+				}
+				LOGGER.info("PortalException: unable to get plid for ADD_ANNOUNCEMENT_PORTLETID");
+			}
+			catch (SystemException se) {
+				if (LOGGER.isDebugEnabled()){
+					LOGGER.debug(se);
+				}
+				LOGGER.info("SystemException: unable to get plid for ADD_ANNOUNCEMENT_PORTLETID");
+			}
+			
+			preferences = PortletPreferencesLocalServiceUtil.getPreferences(themeDisplay.getCompanyId(), PortletKeys.PREFS_OWNER_ID_DEFAULT, PortletKeys.PREFS_OWNER_TYPE_LAYOUT, plid, PortletKeys.ADD_ANNOUNCEMENT_PORTLETID);
+			
+			// preferences = renderRequest.getPreferences();
 			agreementFileEntryId = GetterUtil.getLong(preferences.getValue(AGREEMENT_FILE_ENTRYID, StringPool.BLANK));
 			
 			Country country = CountryServiceUtil.getCountryByA3(themeDisplay.getLocale().getISO3Country());
