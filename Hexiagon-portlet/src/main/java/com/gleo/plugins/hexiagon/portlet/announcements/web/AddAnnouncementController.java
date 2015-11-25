@@ -13,6 +13,7 @@ import com.gleo.plugins.hexiagon.service.AnnouncementServiceUtil;
 import com.gleo.plugins.hexiagon.service.CurrencyLocalServiceUtil;
 import com.gleo.plugins.hexiagon.service.TypeLocalServiceUtil;
 import com.gleo.plugins.hexiagon.util.AnnouncementImageUtil;
+import com.gleo.plugins.hexiagon.util.PortalUtil;
 import com.gleo.plugins.hexiagon.validator.AnnouncementValidator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -42,7 +43,6 @@ import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.AssetCategoryException;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetCategoryConstants;
@@ -304,11 +304,9 @@ public class AddAnnouncementController extends MVCPortlet {
 				for (String error : errors) {
 					SessionErrors.add(actionRequest, error);
 				}
-
-				PortalUtil.copyRequestParameters(actionRequest, actionResponse);
-				actionResponse.setRenderParameter("jspPage", "/jsp/announcements/add/view.jsp");
-
 			}
+			
+			PortalUtil.copyRequestParameters(uploadPortletRequest, actionResponse);
 		}
 		catch (IOException e) {
 			if (LOGGER.isDebugEnabled()) {
@@ -370,10 +368,9 @@ public class AddAnnouncementController extends MVCPortlet {
 			for (String error : errors) {
 				SessionErrors.add(actionRequest, error);
 			}
-
-			PortalUtil.copyRequestParameters(actionRequest, actionResponse);
-			actionResponse.setRenderParameter("jspPage", "/jsp/announcements/add/view.jsp");
 		}
+		
+		PortalUtil.copyRequestParameters(uploadPortletRequest, actionResponse);
 	}
 	
 	/**

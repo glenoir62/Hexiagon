@@ -50,12 +50,12 @@ public class AnnouncementValidator {
 			valid = false;
 		}
 
-		if (Validator.isNotNull(announcement.getEmailAddress()) && !Validator.isEmailAddress(announcement.getEmailAddress())) {
+		if (!Validator.isEmailAddress(announcement.getEmailAddress())) {
 			errors.add("announcementemail-format-error");
 			valid = false;
 		}
 
-		if (Validator.isNotNull(announcement.getPhoneNumber()) && !Validator.isPhoneNumber(announcement.getPhoneNumber())) {
+		if (!Validator.isPhoneNumber(announcement.getPhoneNumber())) {
 			errors.add("announcementphonenumber-format-error");
 			valid = false;
 		}
