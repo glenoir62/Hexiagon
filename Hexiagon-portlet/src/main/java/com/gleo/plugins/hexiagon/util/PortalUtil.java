@@ -1,7 +1,6 @@
 package com.gleo.plugins.hexiagon.util;
 
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.Enumeration;
 import java.util.Map;
