@@ -356,7 +356,7 @@ public class AnnouncementImpl extends AnnouncementBaseImpl {
 		long countryId = ParamUtil.getLong(liferayPortletRequest, "countryId");
 		long regionId = ParamUtil.getLong(liferayPortletRequest, "regionId");
 
-		int filter = ParamUtil.getInteger(liferayPortletRequest, "filterId");
+		int filterId = ParamUtil.getInteger(liferayPortletRequest, "filterId");
 
 		PortletPreferences preferences = liferayPortletRequest.getPreferences();
 
@@ -371,7 +371,7 @@ public class AnnouncementImpl extends AnnouncementBaseImpl {
 		redirectUrl.setParameter("currencyId", String.valueOf(currencyId));
 		redirectUrl.setParameter("countryId", String.valueOf(countryId));
 		redirectUrl.setParameter("regionId", String.valueOf(regionId));
-		redirectUrl.setParameter("filterId", String.valueOf(filter));
+		redirectUrl.setParameter("filterId", String.valueOf(filterId));
 		redirectUrl.setParameter("delta", String.valueOf(delta));
 		redirectUrl.setParameter("page", String.valueOf(page));
 

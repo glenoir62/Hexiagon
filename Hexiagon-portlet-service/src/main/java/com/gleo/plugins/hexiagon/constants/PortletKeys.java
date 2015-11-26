@@ -16,4 +16,6 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 	
 	public static final String ANNOUNCEMENT_DISPLAY_PORTLETID = "announcementdisplayportlet_WAR_Hexiagonportlet";
 	
+	public static final String ANNOUNCEMENT_SEARCH_PORTLETID = "annoucementsearch_WAR_Hexiagonportlet";
+	
 }

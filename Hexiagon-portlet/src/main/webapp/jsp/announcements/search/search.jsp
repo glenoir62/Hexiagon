@@ -1,9 +1,5 @@
 <%@include file="/jsp/init.jsp" %>
 
-<portlet:resourceURL var="searchUrl" id="announcementSearch">
-	<portlet:param name="mvcPath" value="/jsp/announcements/search/results.jsp"/>
-</portlet:resourceURL>
-
 <div id='<portlet:namespace/>show'>
 	<br>
 	<aui:nav-bar>
@@ -26,7 +22,7 @@
 				</c:forEach>
 			</aui:select>
 		</aui:nav-bar-search>
-		
+
 		<aui:nav-bar-search cssClass="offset1 span3">
 			<br>
 			<aui:select name="filter" label="Filter" id="filter">
@@ -35,7 +31,8 @@
 					<c:set var="filterLabel" >
 						<liferay-ui:message key='${filter.getKey()}'/>
 					</c:set>
-					<aui:option label="${filterLabel}" value="${filter.fieldId}" selected="${filter.fieldId == fieldId}" />
+					<c:set var="isSelected" value="${filter.fieldId == filterId}"/>
+					<aui:option label="${filterLabel}" value="${filter.fieldId}" selected="${isSelected}" />
 				</c:forEach>
 			</aui:select>
 		</aui:nav-bar-search>

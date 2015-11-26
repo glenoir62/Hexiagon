@@ -1,6 +1,17 @@
 
 package com.gleo.plugins.hexiagon.portlet.search.web;
 
+import com.gleo.plugins.hexiagon.constants.AnnouncementConstants;
+import com.gleo.plugins.hexiagon.constants.AnnouncementFilterEnum;
+import com.gleo.plugins.hexiagon.constants.PortletKeys;
+import com.gleo.plugins.hexiagon.model.Announcement;
+import com.gleo.plugins.hexiagon.model.Currency;
+import com.gleo.plugins.hexiagon.model.Type;
+import com.gleo.plugins.hexiagon.permission.HexiagonPermission;
+import com.gleo.plugins.hexiagon.service.AnnouncementLocalServiceUtil;
+import com.gleo.plugins.hexiagon.service.CurrencyLocalServiceUtil;
+import com.gleo.plugins.hexiagon.service.FavoriteLocalServiceUtil;
+import com.gleo.plugins.hexiagon.service.TypeServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -26,20 +37,10 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.asset.model.AssetCategory;
 import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
-import com.gleo.plugins.hexiagon.constants.AnnouncementConstants;
-import com.gleo.plugins.hexiagon.constants.AnnouncementFilterEnum;
-import com.gleo.plugins.hexiagon.constants.PortletKeys;
-import com.gleo.plugins.hexiagon.model.Announcement;
-import com.gleo.plugins.hexiagon.model.Currency;
-import com.gleo.plugins.hexiagon.model.Type;
-import com.gleo.plugins.hexiagon.permission.HexiagonPermission;
-import com.gleo.plugins.hexiagon.service.AnnouncementLocalServiceUtil;
-import com.gleo.plugins.hexiagon.service.CurrencyLocalServiceUtil;
-import com.gleo.plugins.hexiagon.service.FavoriteLocalServiceUtil;
-import com.gleo.plugins.hexiagon.service.TypeServiceUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -114,8 +115,13 @@ public class AnnoucementSearchController extends MVCPortlet {
 			LOGGER.error("SystemException : impossible to get currencies");
 		}
 		
+		// Create search Url
+		PortletURL portletURL =  PortletURLFactoryUtil.create(PortalUtil.getHttpServletRequest(renderRequest) , PortletKeys.ANNOUNCEMENT_SEARCH_PORTLETID, themeDisplay.getPlid() ,PortletRequest.RESOURCE_PHASE);
+		portletURL.setParameter("mvcPath", "/jsp/announcements/search/results.jsp");
+		
 		hasAddRight = HexiagonPermission.contains(themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(), "ADD_ANNOUNCEMENT");
 
+		renderRequest.setAttribute("searchUrl", portletURL.toString());
 		renderRequest.setAttribute("types", types);
 		renderRequest.setAttribute("currencies", currencies);
 		renderRequest.setAttribute("hasAddRight", hasAddRight);
