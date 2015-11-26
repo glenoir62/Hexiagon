@@ -53,25 +53,11 @@
 <aui:script use="aui-base">
 // var categoryIdsTabIpc for IPC
 
-var categoryIdsTabIpc = '';
+var categoryIdsTabIpc = '${categoryIds}'.split(',');
+console.log(categoryIdsTabIpc);
+
 var countryIdIpc = ${countryId};
 var regionIdIpc = ${regionId};
-
-// load initial Search
-A.on('domready', function(event){
-	
-	if ('${activeSearch}') {
-		
-		// checked node
-		var categoryIdsTabIpc = '${categoryIds}'.split(',');		
-		var typeId = '${typeId}';
-		var filter = '${filter}';
-		var page = '${page}';
-		var currencyId = '${currencyId}';
-				
-		<portlet:namespace />searchParam(typeId, currencyId, filter, page);
-	}
-});
 	
 var Lang = A.Lang;
 
@@ -124,6 +110,7 @@ Liferay.provide(window,'<portlet:namespace />searchParam',function(typeId, curre
 		var searchPlaceHolder = Y.one('#<portlet:namespace />searchPlaceHolder');
 		searchPlaceHolder.plug(A.LoadingMask, { background: '#e3f5ff' });
 		searchPlaceHolder.loadingmask.show();
+		
 		Y.io.request(
 		      '${searchUrl}',
 		      {
