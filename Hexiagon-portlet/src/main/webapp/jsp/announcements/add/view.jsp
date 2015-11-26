@@ -224,16 +224,11 @@
 	</liferay-ui:panel>
 	
 	<aui:button-row>
-		<aui:button type="button" cssClass="btn btn-info" onClick="${renderResponse.getNamespace()}preview();" value="Preview"></aui:button>
 		<aui:button type="submit" cssClass="btn btn-primary" onClick="${renderResponse.getNamespace()}extractCodeFromEditor();" />
 
 		<aui:button type="cancel" onClick="${redirect}"/>
 	</aui:button-row>
 </aui:form>
-
-<portlet:resourceURL var="loadPreviewURL" id="loadPreview">
-	<portlet:param name="action" value="loadPreview"/>
-</portlet:resourceURL>
 
 <aui:script use="aui-base,aui-form-validator,liferay-form,liferay-dynamic-select">
 
@@ -290,35 +285,6 @@
 		boundingBox: document.<portlet:namespace />fm,
 		rules: rules,
 		validateOnBlur: true
-	});
-	
-	Liferay.provide(window,'<portlet:namespace />preview',function() {
-		<portlet:namespace />extractCodeFromEditor();
-		
-		validator.validate();
-		
-		if(!validator.hasErrors()){
-		
-			var popup = Liferay.Util.Window.getWindow({
-				dialog: {
-					destroyOnHide: true
-				},
-				title: Liferay.Language.get("preview")
-			});
-			
-			popup.plug(
-				A.Plugin.IO,
-				{
-					uri: '${loadPreviewURL}',
-					method: 'POST',
-					dataType: 'text/html',
-					form: { 
-					 	id: A.one('#<portlet:namespace />fm'),
-						upload: false
-					 }
-				}
-			);
-		}
 	});
 	
 	new Liferay.DynamicSelect(
