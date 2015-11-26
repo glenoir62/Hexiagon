@@ -97,7 +97,8 @@ public class AddAnnouncementController extends MVCPortlet {
 
 		long announcementId = ParamUtil.getLong(renderRequest, "announcementId");
 		String redirect = ParamUtil.getString(renderRequest, "redirect");
-		String content = StringPool.BLANK;
+		
+		String content = UnicodeFormatter.toString(ParamUtil.getString(renderRequest, "editor"));
 		
 		PortletPreferences preferences;
 		long agreementFileEntryId = 0;
@@ -148,7 +149,7 @@ public class AddAnnouncementController extends MVCPortlet {
 
 		// add case
 		String title = "new-announcement";
-
+		
 		// get announcement and images
 		if (announcementId > 0) {
 			try {
@@ -280,6 +281,7 @@ public class AddAnnouncementController extends MVCPortlet {
 	public void addAnnouncement(ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 		UploadPortletRequest uploadPortletRequest = PortalUtil.getUploadPortletRequest(actionRequest);
+		
 		ThemeDisplay themeDisplay = (ThemeDisplay) uploadPortletRequest.getAttribute(WebKeys.THEME_DISPLAY);
 		Announcement announcement;
 		try {
@@ -304,34 +306,41 @@ public class AddAnnouncementController extends MVCPortlet {
 				for (String error : errors) {
 					SessionErrors.add(actionRequest, error);
 				}
+				
+				PortalUtil.copyRequestParameters(uploadPortletRequest, actionResponse);
 			}
-			
-			PortalUtil.copyRequestParameters(uploadPortletRequest, actionResponse);
 		}
 		catch (IOException e) {
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug(e);
 			}
 			LOGGER.error("IOException: unable to get announcement from request");
+			SessionErrors.add(actionRequest, IOException.class);
+			PortalUtil.copyRequestParameters(uploadPortletRequest, actionResponse);
 		}
 		catch (AssetCategoryException ace) {
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug(ace);
 			}
 			LOGGER.error("AssetCategoryException: impossible to validate categories from request");
+			SessionErrors.add(actionRequest, AssetCategoryException.class);
+			PortalUtil.copyRequestParameters(uploadPortletRequest, actionResponse);
 		}
 		catch (PortalException e) {
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug(e);
 			}
 			LOGGER.error("PortalException: unable to get add announcement from request");
-
+			SessionErrors.add(actionRequest, PortalException.class);
+			PortalUtil.copyRequestParameters(uploadPortletRequest, actionResponse);
 		}
 		catch (SystemException e) {
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug(e);
 			}
 			LOGGER.error("SystemException: unable to get add announcement from request");
+			SessionErrors.add(actionRequest, SystemException.class);
+			PortalUtil.copyRequestParameters(uploadPortletRequest, actionResponse);
 		}
 	}
 	
@@ -368,9 +377,9 @@ public class AddAnnouncementController extends MVCPortlet {
 			for (String error : errors) {
 				SessionErrors.add(actionRequest, error);
 			}
+			
+			PortalUtil.copyRequestParameters(uploadPortletRequest, actionResponse);
 		}
-		
-		PortalUtil.copyRequestParameters(uploadPortletRequest, actionResponse);
 	}
 	
 	/**

@@ -1,6 +1,7 @@
 package com.gleo.plugins.hexiagon.util;
 
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.Enumeration;
 import java.util.Map;
@@ -32,14 +33,14 @@ public class PortalUtil extends com.liferay.portal.util.PortalUtil {
 			String param = enu.nextElement();
 
 			String[] values = uploadPortletRequest.getParameterValues(param);
-
-			if ((param == null) || (values == null)) {
+			
+			// Don't get image url
+			// data:image ;base64
+			if ((param == null) || (values == null) || param.contains("Image")) {
 				continue;
 			}
-
-			if (renderParameters.get(
-					actionResponse.getNamespace() + param) == null) {
-
+			
+			if (renderParameters.get(actionResponse.getNamespace() + param) == null) {
 				actionResponse.setRenderParameter(param, values);
 			}
 		}
